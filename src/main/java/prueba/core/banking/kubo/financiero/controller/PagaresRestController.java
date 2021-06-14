@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,9 +37,9 @@ public class PagaresRestController {
 	 * @return
 	 * @throws SQLException
 	 */
-	@PostMapping("actualiceTasaISR/{tasaIsr}/{estatus}")
+	@PutMapping("actualiceTasaISR/{tasaIsr}/{estatus}")
 	@Operation(summary = "Actualizar Tasa ISR", description = "Llama Stored Procedure para actualizar la tasa de ISR e intereses")
-	public int actualiceTasaISR(@PathVariable BigDecimal tasaIsr, @PathVariable Character estatus) throws SQLException {
+	public int actualiceTasaISR(@PathVariable BigDecimal tasaIsr, @PathVariable Character estatus) {
 		log.info(">>> actualiceTasaISR {} - Estatus {}", tasaIsr, estatus);
 		return pagaresService.actualiceTasaISR(tasaIsr, estatus);
 	}
